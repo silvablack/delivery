@@ -1,0 +1,29 @@
+version: '2'
+
+volumes:
+  delivery-mysql-data:
+    driver: local
+
+services:
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: delivery-mysql
+    volumes:
+      - delivery-mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=delivery
+      - MYSQL_DATABASE=delivery
+      - MYSQL_USER=delivery
+      - MYSQL_PASSWORD=delivery
+  
+  app:
+    image: ambientum/php:7.1-caddy
+    container_name: delivery-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mysql
