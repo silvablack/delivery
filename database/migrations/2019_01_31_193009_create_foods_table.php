@@ -15,6 +15,10 @@ class CreateFoodsTable extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('materials');
+            $table->float('price',8,2);
+            $table->enum('type', array('main', 'additional'))->default('main');
             $table->timestamps();
         });
     }
