@@ -16,18 +16,18 @@ class FoodsController extends Controller
     }
 
     public function create(Request $request) {
-        return Foods::create($request->all());
+        return response()->json(Foods::create($request->all()),201);
     }
 
     public function update(Request $request, $id){
         $food = Foods::findOrFail($id);
         $food->update($request->all());
-        return $food;
+        return response()->json($food,200);
     }
 
     public function delete(Request $request, $id) {
         $food = Foods::findOrFail($id);
         $food->delete();
-        return 204;
+        return response()->json(null,204);
     }
 }
