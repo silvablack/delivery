@@ -29,12 +29,11 @@ Route::post('logout', 'Auth\LoginController@logout');
 /**
  * Set foods route for API
  */
-Route::get('foods', 'FoodsController@getAll');
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('foods', 'FoodsController@getAll');
+    Route::get('foods/{id}', 'FoodsController@getOne');
+    Route::post('foods', 'FoodsController@create');
+    Route::put('foods/{id}', 'FoodsController@update');
+    Route::delete('foods/{id}', 'FoodsController@delete');
+});
 
-Route::get('foods/{id}', 'FoodsController@getOne');
-
-Route::post('foods', 'FoodsController@create');
-
-Route::put('foods/{id}', 'FoodsController@update');
-
-Route::delete('foods/{id}', 'FoodsController@delete');
