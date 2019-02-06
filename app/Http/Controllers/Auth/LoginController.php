@@ -57,4 +57,21 @@ class LoginController extends Controller
         
         return $this->sendFailedLoginResponse($request);
     }
+
+    /**
+     * Logout user on API
+     * 
+     * @return json
+     */
+    public function logout(Request $request) {
+        $user = Auth::guard('api')->user();
+
+        // Strategy use for generate new token each login
+        if($user) {
+            $user->api_token = null;
+            $user->save();
+        }
+
+        return response()->json(['data'=>'Usuário deslogado.'], 200);
+    }
 }
