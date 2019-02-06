@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         // truncate users table
         User::truncate();
         
+        //create user
         User::create([
             'name' => 'Paulo Silva',
             'email' => 'paulosilvadev3@gmail.com',

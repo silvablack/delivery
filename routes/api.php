@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'Auth\RegisterController@register');
 
+/**
+ * Set foods route for API
+ */
 Route::get('foods', 'FoodsController@getAll');
 
 Route::get('foods/{id}', 'FoodsController@getOne');

@@ -72,6 +72,10 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Register user on API
+     * @return registered
+     */
     public function register(Request $request) {
         $this->validator($request->all())->validate();
 
@@ -83,6 +87,10 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    /**
+     * Check if user is registered
+     * @return json
+     */
     public function registered(Request $request, $user) {
         $user->generateToken();
 

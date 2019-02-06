@@ -7,10 +7,20 @@ use App\Foods;
 
 class FoodsController extends Controller
 {
+    /**
+     * Get all foods informations
+     * 
+     * @return [] App\Foods
+     */
     public function getAll() {
         return Foods::all();
     }
 
+    /**
+     * Get single food information
+     * 
+     * @return App\Foods
+     */
     public function getOne($id) {
         return Foods::find($id);
     }
